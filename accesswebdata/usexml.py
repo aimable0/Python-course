@@ -9,10 +9,14 @@ data = '''
         <email hide="yes" />
     </contact>
 </person>'''
-
+print(type(data))
 tree = ET.fromstring(data)
+print(type(tree))
+
 contact_instances = tree.findall("contact")
 print(len(contact_instances))
+
+print(contact_instances)
 
 for contact in contact_instances:
     print('Name:', contact.find('name').text)
