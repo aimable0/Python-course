@@ -2,13 +2,20 @@ import xml.etree.ElementTree as ET
 
 data = '''
 <person>
-    <name>Aimable Nkurikiyimana</name>
-    <phone type="intl">+250 791 275 915</phone>
-    <residence>Kigali</residence>
-    <email hide="yes" />
+    <contact>
+        <name>Aimable Nkurikiyimana</name>
+        <phone type="intl">+250 791 275 915</phone>
+        <residence>Kigali</residence>
+        <email hide="yes" />
+    </contact>
 </person>'''
 
 tree = ET.fromstring(data)
-print('Name:', tree.find('name').text)
-print('phone:', tree.find('phone').text)
-print('email:', tree.find('email').get('hide'))
+contact_instances = tree.findall("contact")
+print(len(contact_instances))
+
+for contact in contact_instances:
+    print('Name:', contact.find('name').text)
+    print('phone:', contact.find('phone').text)
+    print('residence:', contact.find('residence').text)
+    print('email:', contact.find('email').get('hide'))
